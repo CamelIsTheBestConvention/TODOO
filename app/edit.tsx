@@ -238,9 +238,9 @@ const Edit = () => {
           ]}
         >
           <TextInput
-            className="text-xl text-gray-800"
-            placeholder="닉네임을 입력하세요. (12자 이하)"
-            maxLength={12}
+            className="text-xl text-gray-800 py-2"
+            placeholder="닉네임을 입력하세요. (6자 이하)"
+            maxLength={6}
             value={nickname}
             onChangeText={setNickname}
             placeholderTextColor="#888"

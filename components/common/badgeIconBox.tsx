@@ -4,18 +4,24 @@ interface BadgeIconBoxProps {
   badgeName: string;
   imageSource: ImageSourcePropType;
   description: string;
+  modalWidth: number;
 }
 
 const BadgeIconBox = ({
   badgeName,
   imageSource,
   description,
+  modalWidth,
 }: BadgeIconBoxProps) => {
   return (
-    <View className="items-center">
+    <View style={{ alignItems: "center", width: modalWidth / 4 - 8 }}>
       <Image
         source={imageSource}
-        style={{ width: 60, height: 60, marginBottom: 4 }}
+        style={{
+          width: Math.max(modalWidth / 6, 36),
+          height: Math.max(modalWidth / 6, 36),
+          marginBottom: 4,
+        }}
       />
       <Text className="text-base font-semibold">{badgeName}</Text>
       <Text className="text-sm text-gray-500">{description}</Text>

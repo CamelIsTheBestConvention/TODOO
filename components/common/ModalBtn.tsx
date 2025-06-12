@@ -5,9 +5,10 @@ import { Text, TouchableOpacity, View } from "react-native";
 interface ModalBtnProps {
   label: string;
   onPress: () => void;
+  width?: number;
 }
 
-const ModalBtn = ({ label, onPress }: ModalBtnProps) => {
+const ModalBtn = ({ label, onPress, width }: ModalBtnProps) => {
   return (
     <View className="items-center">
       <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
@@ -18,7 +19,7 @@ const ModalBtn = ({ label, onPress }: ModalBtnProps) => {
           style={[
             shadow.base,
             {
-              width: 150,
+              width: width ?? 150,
               paddingVertical: 8,
               borderRadius: 10,
             },

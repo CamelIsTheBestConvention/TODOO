@@ -24,9 +24,11 @@ const ModalTitle = ({ title, onChange }: ModalTitleProps) => {
     >
       <TextInput
         className="text-2xl font-bold p-2"
-        placeholder="할 일을 작성해보세요."
+        placeholder="할 일을 작성해보세요. (20자 이하)"
         value={title}
         onChangeText={onChange}
+        multiline={true}
+        maxLength={20}
       />
     </LinearGradient>
   );

@@ -29,6 +29,7 @@ const TodoModal = ({ visible, onClose, onSuccess }: TodoModalProps) => {
   const [description, setDescription] = useState("");
   const { todo, mode } = useTodoStore();
   const { width: screenWidth } = Dimensions.get("window");
+  const modalWidth = Math.min(screenWidth * 0.95, 400);
 
   useEffect(() => {
     if (todo) {
@@ -78,7 +79,7 @@ const TodoModal = ({ visible, onClose, onSuccess }: TodoModalProps) => {
               end={{ x: 0.5, y: 1 }}
               colors={["#FFFFFF", "#FFF4EB", "#FFF8E9"]}
               style={{
-                width: Math.min(screenWidth * 0.9, 400),
+                width: modalWidth,
                 padding: 10,
                 borderRadius: 10,
               }}
@@ -102,12 +103,24 @@ const TodoModal = ({ visible, onClose, onSuccess }: TodoModalProps) => {
                   />
                   {mode === "read" && todo?.is_done === false && (
                     <View className="flex-row justify-between">
-                      <ModalBtn label="수정" onPress={handleUpdate} />
-                      <ModalBtn label="삭제" onPress={handleDelete} />
+                      <ModalBtn
+                        label="수정"
+                        onPress={handleUpdate}
+                        width={modalWidth / 3 - 12}
+                      />
+                      <ModalBtn
+                        label="삭제"
+                        onPress={handleDelete}
+                        width={modalWidth / 3 - 12}
+                      />
                     </View>
                   )}
                   {mode === "create" && (
-                    <ModalBtn label="등록" onPress={handleAdd} />
+                    <ModalBtn
+                      label="등록"
+                      onPress={handleAdd}
+                      width={modalWidth / 3 - 12}
+                    />
                   )}
                 </>
               )}

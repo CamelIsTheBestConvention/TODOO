@@ -14,10 +14,11 @@ const ModalDesc = ({ description, onChange }: ModalDescProps) => {
     >
       <TextInput
         className="text-xl font-semibold"
-        placeholder="세부 내용을 작성해보세요."
+        placeholder="세부 내용을 작성해보세요. (60자 이하)"
         value={description}
         onChangeText={onChange}
-        multiline
+        multiline={true}
+        maxLength={60}
       />
     </View>
   );

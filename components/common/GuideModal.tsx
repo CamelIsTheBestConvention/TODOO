@@ -36,6 +36,7 @@ interface GuideModalProps {
 const GuideModal = ({ visible, onClose }: GuideModalProps) => {
   const [page, setPage] = React.useState<number>(1);
   const { width: screenWidth } = Dimensions.get("window");
+  const modalWidth = Math.min(screenWidth * 0.95, 400);
 
   return (
     <Modal visible={visible} transparent animationType="slide">
@@ -48,7 +49,7 @@ const GuideModal = ({ visible, onClose }: GuideModalProps) => {
                 end={{ x: 0.5, y: 1 }}
                 colors={["#FFFFFF", "#FFF4EB", "#FFF8E9"]}
                 style={{
-                  width: Math.min(screenWidth * 0.9, 400),
+                  width: modalWidth,
                   padding: 20,
                   borderColor: "#F5CBA7",
                   borderWidth: 2,
@@ -95,44 +96,54 @@ const GuideModal = ({ visible, onClose }: GuideModalProps) => {
                         <LevelIconBox
                           levelRange="LV. 1~5"
                           imageSource={Level1_5}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 6~10"
                           imageSource={Level6_10}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 11~15"
                           imageSource={Level11_15}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 16~20"
                           imageSource={Level16_20}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 21~25"
                           imageSource={Level21_25}
+                          modalWidth={modalWidth}
                         />
                       </View>
                       <View className="w-full flex-row justify-around gap-3 mt-4">
                         <LevelIconBox
                           levelRange="LV. 26~30"
                           imageSource={Level26_30}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 31~35"
                           imageSource={Level31_35}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 36~40"
                           imageSource={Level36_40}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 41~45"
                           imageSource={Level41_45}
+                          modalWidth={modalWidth}
                         />
                         <LevelIconBox
                           levelRange="LV. 46~"
                           imageSource={Level46_50}
+                          modalWidth={modalWidth}
                         />
                       </View>
                     </View>
@@ -150,16 +161,19 @@ const GuideModal = ({ visible, onClose }: GuideModalProps) => {
                           badgeName="출석 I"
                           imageSource={Daily7}
                           description="7일 연속 출석"
+                          modalWidth={modalWidth}
                         />
                         <BadgeIconBox
                           badgeName="출석 II"
                           imageSource={Daily14}
                           description="14일 연속 출석"
+                          modalWidth={modalWidth}
                         />
                         <BadgeIconBox
                           badgeName="출석 III"
                           imageSource={Daily21}
                           description="21일 연속 출석"
+                          modalWidth={modalWidth}
                         />
                       </View>
                       <View className="flex-row justify-around gap-4 mb-6">
@@ -167,16 +181,19 @@ const GuideModal = ({ visible, onClose }: GuideModalProps) => {
                           badgeName="노련함 I"
                           imageSource={Effort10}
                           description="todo 완료 10회"
+                          modalWidth={modalWidth}
                         />
                         <BadgeIconBox
                           badgeName="노련함 II"
                           imageSource={Effort20}
                           description="todo 완료 20회"
+                          modalWidth={modalWidth}
                         />
                         <BadgeIconBox
                           badgeName="노련함 III"
                           imageSource={Effort30}
                           description="todo 완료 30회"
+                          modalWidth={modalWidth}
                         />
                       </View>
                     </View>
