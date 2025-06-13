@@ -2,6 +2,7 @@ import LayoutBg from "@/components/common/LayoutBg";
 import { useAuthStore } from "@/store/useAuthStore";
 import { supabase } from "@/supabaseClient";
 import { useRouter } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useRef } from "react";
 import { Animated, View } from "react-native";
 
@@ -50,7 +51,9 @@ export default function IndexPage() {
                 }),
               ])
             )
-          ).start(() => {
+          ).start(async () => {
+            await SplashScreen.hideAsync();
+
             setTimeout(() => {
               const logged = useAuthStore.getState().isLoggedIn;
               router.replace(logged ? "/(tabs)" : "/login");

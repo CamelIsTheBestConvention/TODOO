@@ -6,9 +6,12 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { Slot } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 import "react-native-url-polyfill/auto";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
