@@ -54,7 +54,13 @@ const TodoBox = ({ todoData, onPress, reloadData }: TodoBoxProps) => {
           }}
         >
           <View>
-            <Text className="text-[18px] mb-5 font-bold">{todoData.title}</Text>
+            <Text
+              style={{ maxWidth: 180 }}
+              ellipsizeMode="tail"
+              className="text-[18px] mb-5 font-bold"
+            >
+              {todoData.title}
+            </Text>
             <Text className="text-[16px]">+5 XP</Text>
           </View>
           {todoData.is_done ? (

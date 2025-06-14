@@ -74,8 +74,11 @@ const GuideModal = ({ visible, onClose }: GuideModalProps) => {
                       <Text className="text-base mb-2">
                         3. 스탬프를 눌러 할 일을 달성해봐요.
                       </Text>
+                      <Text className="text-base mb-2">
+                        4. 하루에 최대 4번까지 경험치를 획득할 수 있어요.
+                      </Text>
                       <Text className="text-base mb-4">
-                        4. 뱃지는 조건에 따라 자동으로 획득됩니다.
+                        5. 뱃지는 조건에 따라 자동으로 획득됩니다.
                       </Text>
                     </View>
                   </View>
@@ -92,7 +95,7 @@ const GuideModal = ({ visible, onClose }: GuideModalProps) => {
                       <Text className="text-base text-gray-600 mb-4 text-center">
                         레벨 구간에 따라 아이콘이 표시됩니다.
                       </Text>
-                      <View className="w-full flex-row justify-around gap-3">
+                      <View className="w-full flex-row justify-around gap-2">
                         <LevelIconBox
                           levelRange="LV. 1~5"
                           imageSource={Level1_5}

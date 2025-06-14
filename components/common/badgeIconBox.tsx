@@ -18,13 +18,29 @@ const BadgeIconBox = ({
       <Image
         source={imageSource}
         style={{
-          width: Math.max(modalWidth / 6, 36),
-          height: Math.max(modalWidth / 6, 36),
+          width: Math.max(modalWidth / 7, 30),
+          height: Math.max(modalWidth / 7, 30),
           marginBottom: 4,
         }}
       />
-      <Text className="text-base font-semibold">{badgeName}</Text>
-      <Text className="text-sm text-gray-500">{description}</Text>
+      <Text
+        style={{
+          fontSize: modalWidth > 400 ? 16 : 14,
+          fontWeight: "bold",
+          textAlign: "center",
+        }}
+      >
+        {badgeName}
+      </Text>
+      <Text
+        style={{
+          fontSize: modalWidth > 400 ? 14 : 12,
+          textAlign: "center",
+        }}
+        className="text-gray-500"
+      >
+        {description}
+      </Text>
     </View>
   );
 };

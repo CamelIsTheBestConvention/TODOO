@@ -24,7 +24,8 @@ export default function IndexPage() {
         console.warn("세션 조회 실패:", err.message);
         setLoggedIn(false);
       })
-      .finally(() => {
+      .finally(async () => {
+        await SplashScreen.hideAsync();
         Animated.stagger(
           200,
           animationValues.map((e) =>
@@ -51,9 +52,7 @@ export default function IndexPage() {
                 }),
               ])
             )
-          ).start(async () => {
-            await SplashScreen.hideAsync();
-
+          ).start(() => {
             setTimeout(() => {
               const logged = useAuthStore.getState().isLoggedIn;
               router.replace(logged ? "/(tabs)" : "/login");

@@ -29,7 +29,7 @@ const ProfileBox = ({ name, level, profile_img }: ProfileBoxProps) => {
       <View className="w-full flex-row justify-between items-center px-5 py-4">
         {/* 날짜와 닉네임 */}
         <View>
-          <Text className="text-3xl font-semibold">
+          <Text className="text-2xl font-semibold">
             📆 {getFormattedDate()}
           </Text>
           <View className="flex-row items-center mt-2">
@@ -38,7 +38,7 @@ const ProfileBox = ({ name, level, profile_img }: ProfileBoxProps) => {
               style={{ width: 30, height: 30, marginRight: 10 }}
               testID="medal-image"
             />
-            <Text className="text-2xl text-gray-500 font-medium">
+            <Text className="text-xl text-gray-500 font-medium">
               LV.{level} {name}
             </Text>
           </View>

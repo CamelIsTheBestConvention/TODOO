@@ -191,7 +191,7 @@ const Edit = () => {
   return (
     <LayoutBg>
       <TitleLogo />
-      <View className="items-center pt-10 pb-40">
+      <View className="w-full px-10 items-center pt-10 pb-40">
         <View className="relative mb-6">
           <LinearGradient
             colors={["#FF91B0", "#FFBE84"]}

@@ -9,7 +9,6 @@ import {
   VictoryLine,
   VictoryScatter,
   VictoryTheme,
-  VictoryTooltip,
 } from "victory-native";
 import BoxBg from "../common/BoxBg";
 
@@ -69,6 +68,13 @@ const TodoChart = ({ todoList }: TodoChartProps) => {
   }, [todoList]);
 
   const chartData = weeklyData.map((y, i) => ({ x: i, y }));
+  const maxValue = Math.max(...weeklyData, 5);
+  const yMax = Math.ceil(maxValue / 5) * 5;
+
+  const tickValues = [];
+  for (let i = 0; i <= yMax; i += yMax > 10 ? 2 : 1) {
+    tickValues.push(i);
+  }
 
   return (
     <BoxBg>
@@ -96,6 +102,7 @@ const TodoChart = ({ todoList }: TodoChartProps) => {
             padding={{ top: 10, bottom: 30, left: 30, right: 10 }}
             domainPadding={{ x: 30, y: [10, 20] }}
             theme={VictoryTheme.material}
+            domain={{ y: [0, yMax] }}
           >
             <VictoryAxis
               tickValues={[0, 1, 2, 3, 4, 5, 6]}
@@ -107,7 +114,7 @@ const TodoChart = ({ todoList }: TodoChartProps) => {
             />
             <VictoryAxis
               dependentAxis
-              tickValues={[0, 1, 2, 3, 4, 5]}
+              tickValues={tickValues}
               style={{
                 tickLabels: { fontSize: 14, fill: "#000" },
                 grid: { stroke: "#d9d9d9" },
@@ -135,24 +142,6 @@ const TodoChart = ({ todoList }: TodoChartProps) => {
                 onLoad: { duration: 1000 },
               }}
               size={5}
-              labels={({ datum }) => `${datum.y}개 완료`}
-              labelComponent={
-                <VictoryTooltip
-                  renderInPortal={false}
-                  constrainToVisibleArea={true}
-                  flyoutStyle={{
-                    fill: "#fff",
-                    stroke: "#ccc",
-                    strokeWidth: 1,
-                  }}
-                  style={{
-                    fontSize: 12,
-                    fill: "#000",
-                  }}
-                  pointerLength={5}
-                  cornerRadius={4}
-                />
-              }
               style={{
                 data: {
                   fill: "#FF5722",

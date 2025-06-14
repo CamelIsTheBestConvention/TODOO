@@ -177,22 +177,32 @@ export const todoComplete = async (
     }
 
     const badgeKeys = await getAllBadges(userId);
+
+    // 이미 보유한 badge_id 먼저 조회
+    const { data: ownedBadges, error: ownedError } = await supabase
+      .from("user_badge")
+      .select("badge_id")
+      .eq("user_id", userId);
+
+    if (ownedError) {
+      console.error("todoComplete: 보유 뱃지 조회 실패", ownedError);
+      // 필요하다면 return; 또는 continue;
+    }
+
+    const ownedIds = ownedBadges?.map((b) => b.badge_id) ?? [];
+
     for (const key of badgeKeys) {
       const badgeId = badgeMapping[key];
-      if (!badgeId) {
-        console.warn("todoComplete: 알 수 없는 BadgeKey", key);
-        continue;
-      }
-      const { error: badgeErr } = await supabase.from("user_badge").upsert(
-        {
-          user_id: userId,
-          badge_id: badgeId,
-          obtained_at: new Date().toISOString(),
-        },
-        { onConflict: "user_id, badge_id" }
-      );
+      if (!badgeId) continue;
+      if (ownedIds.includes(badgeId)) continue; // 이미 있으면 패스
+
+      const { error: badgeErr } = await supabase.from("user_badge").insert({
+        user_id: userId,
+        badge_id: badgeId,
+        obtained_at: new Date().toISOString(),
+      });
       if (badgeErr) {
-        console.error("todoComplete: 뱃지 upsert 실패", key, badgeErr);
+        console.error("todoComplete: 뱃지 insert 실패", key, badgeErr);
       }
     }
 

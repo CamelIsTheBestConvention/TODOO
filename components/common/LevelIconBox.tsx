@@ -12,17 +12,27 @@ const LevelIconBox = ({
   modalWidth,
 }: LevelIconBoxProps) => {
   return (
-    <View style={{ alignItems: "center", width: modalWidth / 6 - 8 }}>
+    <View style={{ alignItems: "center" }}>
       <Image
         source={imageSource}
         style={{
-          width: Math.max(modalWidth / 7, 36),
-          height: Math.max(modalWidth / 7, 36),
+          width: Math.max(modalWidth / 9, 25),
+          height: Math.max(modalWidth / 9, 25),
           resizeMode: "contain",
           marginBottom: 4,
+          alignItems: "center",
+          justifyContent: "center",
         }}
       />
-      <Text className="text-sm font-semibold">{levelRange}</Text>
+      <Text
+        style={{
+          fontSize: modalWidth > 400 ? 14 : 12,
+          fontWeight: "bold",
+          textAlign: "center",
+        }}
+      >
+        {levelRange}
+      </Text>
     </View>
   );
 };

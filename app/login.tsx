@@ -119,7 +119,7 @@ export default function LoginScreen() {
   return (
     <LayoutBg>
       <TitleLogo />
-      <View className="w-full px-20">
+      <View className="w-full px-10">
         {/* 이메일 */}
         <FormInput
           value={email}

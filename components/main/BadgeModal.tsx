@@ -50,7 +50,7 @@ const BadgeModal = ({ visible, badge, onClose }: BadgeModalProps) => {
             end={{ x: 0.5, y: 1 }}
             colors={["#FFFFFF", "#FFF4EB", "#FFF8E9"]}
             style={{
-              width: 360,
+              width: "90%",
               padding: 20,
               borderColor: "#F5CBA7",
               borderWidth: 2,
