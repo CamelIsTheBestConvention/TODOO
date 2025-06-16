@@ -41,24 +41,29 @@ const TodoChart = ({ todoList }: TodoChartProps) => {
   const weeklyData = useMemo(() => {
     const data = [0, 0, 0, 0, 0, 0, 0];
 
-    const today = new Date();
-    const todayDay = today.getDay();
+    const now = new Date();
+    const offsetMs = now.getTimezoneOffset() * 60_000;
+    const todayLocal = new Date(now.getTime() - offsetMs);
     /* istanbul ignore next */
-    const diffToMonday = todayDay === 0 ? -6 : 1 - todayDay;
-    const monday = new Date(today);
-    monday.setDate(today.getDate() + diffToMonday);
-    monday.setHours(0, 0, 0, 0);
+    todayLocal.setHours(0, 0, 0, 0);
+    const diffToMonday = ((todayLocal.getDay() + 6) % 7) * -1;
+    const mondayLocal = new Date(todayLocal);
+    mondayLocal.setDate(todayLocal.getDate() + diffToMonday);
 
     if (todoList) {
       todoList.forEach((todo) => {
         if (!todo.created_at || todo.is_done !== true) return;
 
-        const createdDate = new Date(todo.created_at);
-        createdDate.setHours(0, 0, 0, 0);
+        // 1) UTC 문자열 → Date
+        const dateUtc = new Date(todo.created_at);
+        // 2) UTC→로컬(서울)으로 보정
+        const dateLocal = new Date(dateUtc.getTime() - offsetMs);
+        // 3) 자정 기준 그룹핑
+        dateLocal.setHours(0, 0, 0, 0);
 
-        if (createdDate >= monday && createdDate <= today) {
-          const day = createdDate.getDay();
-          const mappedIndex = (day + 6) % 7; // 월 = 0, 일 = 6
+        if (dateLocal >= mondayLocal && dateLocal <= todayLocal) {
+          const day = dateLocal.getDay();
+          const mappedIndex = (day + 6) % 7; // 월=0,...,일=6
           data[mappedIndex]++;
         }
       });

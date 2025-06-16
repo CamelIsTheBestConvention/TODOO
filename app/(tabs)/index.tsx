@@ -36,7 +36,13 @@ const HomeScreen = () => {
     const userId = await getUserId();
     if (!userId) return;
 
-    const today = new Date().toISOString().slice(0, 10);
+    const now = new Date();
+    const startUtc = new Date(now);
+    startUtc.setUTCHours(15, 0, 0, 0);
+    const endUtc = new Date(startUtc);
+    endUtc.setDate(startUtc.getDate() + 1);
+
+    console.log(startUtc.toISOString(), endUtc.toISOString());
 
     const [
       { data: user },
@@ -50,7 +56,8 @@ const HomeScreen = () => {
         .from("todo")
         .select("*")
         .eq("user_id", userId)
-        .filter("created_at::date", "eq", today),
+        .gte("created_at", startUtc)
+        .lt("created_at", endUtc),
       supabase.from("user_badge").select("*").eq("user_id", userId),
     ]);
 

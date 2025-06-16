@@ -31,9 +31,16 @@ const BadgeBox = ({ badgeList }: BadgeBoxProps) => {
                 source={convertBadgeIcon(item.badge.icon_url)}
                 style={{ width: 60, height: 60 }}
               />
-              <Text className="text-sm">{item.badge.name}</Text>
+              <Text className="text-sm">{item.badge.name}</Text>+{" "}
               <Text className="text-xs text-gray-500">
-                {new Date(item.obtained_at).toLocaleDateString()}
+                {new Date(item.obtained_at).toLocaleDateString("ko-KR", {
+                  timeZone: "Asia/Seoul",
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </Text>
             </View>
           ))}

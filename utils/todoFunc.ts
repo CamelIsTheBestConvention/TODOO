@@ -133,10 +133,12 @@ export const todoComplete = async (
       console.error("todoComplete: 완료된 todo 조회 실패", allDoneErr);
       throw allDoneErr;
     }
-    const today = new Date().toISOString().slice(0, 10);
-    const doneCountToday = allDone.filter(
-      (t) => t.created_at?.slice(0, 10) === today
-    ).length;
+
+    const today = new Date().toLocaleDateString("en-CA");
+    const doneCountToday = allDone.filter((t) => {
+      if (!t.created_at) return false;
+      return new Date(t.created_at).toLocaleDateString("en-CA") === today;
+    }).length;
 
     const { error: completeErr } = await supabase
       .from("todo")
@@ -145,6 +147,7 @@ export const todoComplete = async (
         created_at: new Date().toISOString(),
       })
       .eq("todo_id", todo.todo_id);
+
     if (completeErr) {
       console.error("todoComplete: todo 완료 처리 실패", completeErr);
       throw completeErr;

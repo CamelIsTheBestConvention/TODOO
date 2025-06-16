@@ -13,6 +13,7 @@ const ProfileBox = ({ name, level, profile_img }: ProfileBoxProps) => {
   const getFormattedDate = () => {
     const today = new Date();
     const options: Intl.DateTimeFormatOptions = {
+      timeZone: "Asia/Seoul",
       month: "long",
       day: "numeric",
       weekday: "long",
