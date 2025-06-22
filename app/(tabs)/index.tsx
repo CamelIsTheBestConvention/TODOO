@@ -37,12 +37,11 @@ const HomeScreen = () => {
     if (!userId) return;
 
     const now = new Date();
-    const startUtc = new Date(now);
-    startUtc.setUTCHours(15, 0, 0, 0);
+    const todayKST = new Date(now.getTime() + 9 * 60 * 60 * 1000); // KST 기준 시간
+    todayKST.setHours(0, 0, 0, 0);
+    const startUtc = new Date(todayKST.getTime() - 9 * 60 * 60 * 1000); // 다시 UTC로 변환
     const endUtc = new Date(startUtc);
     endUtc.setDate(startUtc.getDate() + 1);
-
-    console.log(startUtc.toISOString(), endUtc.toISOString());
 
     const [
       { data: user },
@@ -56,8 +55,8 @@ const HomeScreen = () => {
         .from("todo")
         .select("*")
         .eq("user_id", userId)
-        .gte("created_at", startUtc)
-        .lt("created_at", endUtc),
+        .gte("created_at", startUtc.toISOString())
+        .lt("created_at", endUtc.toISOString()),
       supabase.from("user_badge").select("*").eq("user_id", userId),
     ]);
 

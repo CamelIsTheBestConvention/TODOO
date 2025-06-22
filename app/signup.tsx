@@ -54,6 +54,10 @@ const Signup = () => {
         "로그인 하려면 이메일 인증이 필요합니다. 메일함을 확인해 주세요.",
         [{ text: "확인", onPress: () => router.push("/login") }]
       );
+
+      setTimeout(() => {
+        router.push("/login");
+      }, 2000);
     }
   };
 
