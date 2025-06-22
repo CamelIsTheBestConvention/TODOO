@@ -6,7 +6,7 @@ React Native + Expo, supabase 기반의 할 일 관리 앱입니다.
 ---
 
 ## ⚙ 앱 다운로드 링크
-[👉 APK 다운로드](https://drive.google.com/file/d/1IWM-pkxiUHTse-jpL2LdbwofC08sTjM8/view?usp=sharing)
+[👉 APK 다운로드](https://github.com/moonmisae118/TODOO/releases/tag/v1.0.0)
 
 ---
 
